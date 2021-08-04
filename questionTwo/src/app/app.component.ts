@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CallApiService } from './call-api.service';
 
 @Component({
@@ -6,14 +6,16 @@ import { CallApiService } from './call-api.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'questionTwo';
   listCategories: string[] = [];
   tempToShowCategories: string[] = [];
   inputValue = '';
 
-  constructor(private apiService: CallApiService) {
-    apiService.getListCategories().subscribe((categories) => {
+  constructor(private apiService: CallApiService) {}
+
+  ngOnInit(): void {
+    this.apiService.getListCategories().subscribe((categories) => {
       console.log(categories);
       this.listCategories = categories;
       this.tempToShowCategories = categories;
