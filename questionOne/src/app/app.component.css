@@ -1,0 +1,15 @@
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 200px auto 300px;
+}
+
+.grid-wrapper > div {
+  border: 1px solid black;
+  min-height: 100vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .grid-wrapper {
+    overflow: scroll;
+  }
+}

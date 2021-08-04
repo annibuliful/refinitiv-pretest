@@ -1,0 +1,20 @@
+<div class="grid-wrapper">
+  <div id="first-column">
+    <input
+      [ngModel]="inputNumber"
+      type="number"
+      (ngModelChange)="onChangeInputNumber($event)"
+      min="0"
+    />
+  </div>
+  <div id="second-column">
+    <select
+      [ngModel]="inputSelectOption"
+      (ngModelChange)="onChangeCalculateOption($event)"
+    >
+      <option value="checkPrime">isPrime</option>
+      <option value="checkFibonacci">isFibonacci</option>
+    </select>
+  </div>
+  <div id="third-column">{{ resultOfCalculation }}</div>
+</div>
