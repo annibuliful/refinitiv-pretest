@@ -24,13 +24,13 @@ export const getNavValue = (
     dom.window.document
       .querySelectorAll("tr:not(:first-child)") // skip header table row
       .forEach((element) => {
-        const fundCodeContent = element.querySelector("td")?.textContent;
+        const fundCodeContent = element.querySelector("td")?.textContent; // get fundcode content
 
         const isNotMatchFunCode = !fundCodeContent?.includes(fundCode);
 
         if (!fundCodeContent || isNotMatchFunCode) return;
 
-        const navValue = element.querySelectorAll("td")?.[1]?.textContent; // get first child from each row which is fundcode eg. BM70SSF, BEQSSF
+        const navValue = element.querySelectorAll("td")?.[1]?.textContent; // get second child from each row which is Nav value
         resolve(navValue);
       });
 
