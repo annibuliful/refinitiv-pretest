@@ -9,7 +9,7 @@ type SelectOption = 'checkPrime' | 'checkFibonacci' | null;
 export class AppComponent {
   title = 'questionOne';
   inputNumber: number = 0;
-  inputSelectOption: SelectOption = null;
+  inputSelectOption: SelectOption = 'checkPrime';
   resultOfCalculation: boolean = false;
 
   checkIsPrimeNumber() {
