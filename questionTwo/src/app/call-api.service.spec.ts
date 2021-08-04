@@ -32,7 +32,7 @@ describe('CallApiService', () => {
         expect(categories.length).toEqual(8);
       },
       (err) => {
-        console.log('error', err);
+        console.error('error', err);
       },
       () => {
         done();
