@@ -4,9 +4,7 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 
@@ -16,16 +14,31 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'questionOne'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('questionOne');
-  });
-
-  it('should render title', () => {
+  it('should render input in first column', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('questionOne app is running!');
+
+    expect(
+      compiled.querySelector('#first-column')?.firstChild?.nodeName
+    ).toEqual('INPUT');
+  });
+
+  it('should render select in second column ', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(
+      compiled.querySelector('#second-column')?.firstChild?.nodeName
+    ).toEqual('SELECT');
+  });
+
+  it('should render false value in third column', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('#third-column')?.textContent).toEqual(
+      'false'
+    );
   });
 });
