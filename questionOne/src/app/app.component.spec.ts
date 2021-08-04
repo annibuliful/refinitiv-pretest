@@ -3,13 +3,13 @@ import { By } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 
-const getElementByQuery = (
+function getElementByQuery<T extends HTMLElement>(
   fixture: ComponentFixture<AppComponent>,
   query: string
-) => {
+) {
   const element = fixture.debugElement.query(By.css(query));
-  return element.nativeElement as HTMLInputElement;
-};
+  return element.nativeElement as T;
+}
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -59,12 +59,18 @@ describe('AppComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
 
-      const inputNativeElement = getElementByQuery(fixture, 'input');
+      const inputNativeElement = getElementByQuery<HTMLInputElement>(
+        fixture,
+        'input'
+      );
       inputNativeElement.value = '3';
       inputNativeElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
-      const resultNativeElement = getElementByQuery(fixture, '#third-column');
+      const resultNativeElement = getElementByQuery<HTMLDivElement>(
+        fixture,
+        '#third-column'
+      );
       expect(resultNativeElement.textContent).toEqual('true');
     });
   });
@@ -75,12 +81,18 @@ describe('AppComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
 
-      const inputNativeElement = getElementByQuery(fixture, 'input');
+      const inputNativeElement = getElementByQuery<HTMLInputElement>(
+        fixture,
+        'input'
+      );
       inputNativeElement.value = '4';
       inputNativeElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
-      const resultNativeElement = getElementByQuery(fixture, '#third-column');
+      const resultNativeElement = getElementByQuery<HTMLDivElement>(
+        fixture,
+        '#third-column'
+      );
       expect(resultNativeElement.textContent).toEqual('false');
     });
   });
@@ -91,11 +103,14 @@ describe('AppComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
 
-      const inputNativeElement = getElementByQuery(fixture, 'input');
+      const inputNativeElement = getElementByQuery<HTMLInputElement>(
+        fixture,
+        'input'
+      );
       inputNativeElement.value = '4';
       inputNativeElement.dispatchEvent(new Event('input'));
 
-      const selectNativeElement = getElementByQuery(
+      const selectNativeElement = getElementByQuery<HTMLSelectElement>(
         fixture,
         '#second-column > select'
       );
@@ -118,11 +133,14 @@ describe('AppComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
 
-      const inputNativeElement = getElementByQuery(fixture, 'input');
+      const inputNativeElement = getElementByQuery<HTMLInputElement>(
+        fixture,
+        'input'
+      );
       inputNativeElement.value = '2';
       inputNativeElement.dispatchEvent(new Event('input'));
 
-      const selectNativeElement = getElementByQuery(
+      const selectNativeElement = getElementByQuery<HTMLSelectElement>(
         fixture,
         '#second-column > select'
       );
